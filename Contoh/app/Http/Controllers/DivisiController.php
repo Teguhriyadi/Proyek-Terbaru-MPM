@@ -7,6 +7,7 @@ use App\Models\Model\Divisi;
 use App\Models\Model\Jabatan;
 use App\Models\Model\Bagian;
 use App\Models\Model\Anggota;
+use App\Models\Model\Angkatan;
 
 class DivisiController extends Controller
 {
@@ -24,9 +25,17 @@ class DivisiController extends Controller
 
     public function tambah(Request $request)
     {
-    	Divisi::create($request->all());
+        $data = Angkatan::where("status", "1")->first();
+
+    	Divisi::create([
+            "id_bagian" => $request->id_bagian,
+            "nim_anggota" => $request->nim_anggota,
+            "id_jabatan" => $request->id_jabatan,
+            "id_angkatan" => $data->id_angkatan
+        ]);
 
     	return redirect()->back()->with("sukses", "Data Berhasil di Tambahkan");
+        
     }
 
     public function hapus($id_divisi)

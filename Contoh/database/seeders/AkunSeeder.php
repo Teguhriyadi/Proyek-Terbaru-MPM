@@ -17,17 +17,35 @@ class AkunSeeder extends Seeder
     {
     	$faker = Faker::create("id_ID");
 
-    	for ($i = 1; $i <= 10; $i++)
-    	{
-    		User::create([
-    			"username" => $faker->firstname,
-    			"nama" => $faker->name,
-    			"email" => $faker->email,
-    			"password" => bcrypt("password"),
-    			"created_by" => 1,
-    			"updated_by" => 1,
-    			"id_role" => mt_rand(1, 10)
-    		]);
-    	}
+    	
+    	User::create([
+    		"username" => "admin",
+    		"nama" => "admin",
+    		"email" => "admin@gmail.com",
+    		"password" => bcrypt("password"),
+			"created_by" => 1,
+    		"updated_by" => 1,
+    		"id_role" => 1
+    	]);
+
+        User::create([
+            "username" => "bph",
+            "nama" => "bph",
+            "email" => "bph@gmail.com",
+            "password" => bcrypt("password"),
+            "created_by" => 1,
+            "updated_by" => 1,
+            "id_role" => 2
+        ]);
+
+        User::create([
+            "username" => "mahasiswa",
+            "nama" => "mahasiswa",
+            "email" => "mahasiswa@gmail.com",
+            "password" => bcrypt("password"),
+            "created_by" => 1,
+            "updated_by" => 1,
+            "id_role" => 3
+        ]);
     }
 }

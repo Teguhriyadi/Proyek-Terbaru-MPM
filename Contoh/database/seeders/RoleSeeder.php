@@ -22,8 +22,16 @@ class RoleSeeder extends Seeder
     	for ($i = 1; $i <= 10; $i++)
     	{
     		Role::create([
-    			'nama_role' => $faker->jobTitle
+    			"nama_role" => "admin"
     		]);
+
+            Role::create([
+                "nama_role" => "mahasiswa"
+            ]);
+
+            Role::create([
+                "nama_role" => "mahasiswa"
+            ]);
     	}
     }
 }

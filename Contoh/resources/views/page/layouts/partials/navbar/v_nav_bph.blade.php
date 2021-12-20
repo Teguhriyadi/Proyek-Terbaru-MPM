@@ -73,7 +73,7 @@
         </div>
       </li>
       <li class="nav-item">
-        <a class="nav-link" data-widget="control-sidebar" data-slide="true" href="#" role="button">
+        <a onclick="return confirm('Yakin ? Anda Ingin Logout ?')" class="nav-link" href="{{ url('/page/bph/logout') }}" role="button">
           <i class="fa fa-sign-out"> </i> Logout
         </a>
       </li>

@@ -18,6 +18,7 @@ class CreateTbDivisiTable extends Migration
             $table->integer('id_bagian')->default(0);
             $table->string('nim_anggota', 100)->nullable();
             $table->integer('id_jabatan')->default(0);
+            $table->integer('id_angkatan')->nullable();
         });
     }
 

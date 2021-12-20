@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Model\Berita;
+use App\Models\Model\HubungiKami;
 
 class AppLandingController extends Controller
 {
@@ -78,6 +79,18 @@ class AppLandingController extends Controller
         ]);
 
         return redirect("/")->with("sukses", "Data Berhasil di Inputkan");
+    }
+
+    public function tambah_pesan(Request $request)
+    {
+        HubungiKami::create([
+            "nama" => $request->nama,
+            "email" => $request->email,
+            "judul" => $request->judul,
+            "pesan" => $request->pesan
+        ]);
+
+        return redirect()->back();
     }
 
     public function galeri()

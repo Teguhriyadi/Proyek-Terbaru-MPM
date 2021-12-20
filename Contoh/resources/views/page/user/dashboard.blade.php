@@ -46,7 +46,7 @@
         <div class="container" data-aos="fade-up">
 
             <div class="section-title">
-                <h2>Tentang Kami</h2>
+                <h2>{{ auth()->user()->nama }}</h2>
             </div>
 
             <div class="row content">
@@ -171,31 +171,38 @@
 
                 </div>
 
-                <div class="col-lg-7 mt-5 mt-lg-0 d-flex align-items-stretch">
-                    <form action="{{ url('/tambah') }}" method="post" role="form" class="php-email-form">
-                        {{ csrf_field() }}
-                        <div class="row">
-                            <div class="form-group col-md-6">
-                                <label for="nama"> Nama </label>
-                                <input type="text" name="nama" class="form-control" id="nama" required placeholder="Masukkan Nama">
-                            </div>
-                            <div class="form-group col-md-6">
-                                <label for="email"> Emai </label>
-                                <input type="email" class="form-control" name="email" id="email" required placeholder="Masukkan Email">
-                            </div>
+                <div class="col-lg-7 mt-5 mt-lg-0">
+                    <div class="card">
+                        <div class="card-body">
+                            <form action="{{ url('/tambah_pesan') }}" method="post">
+                                {{ csrf_field() }}
+                                <div class="row">
+                                    <div class="form-group col-md-6">
+                                        <label for="nama" class="mb-2"> Nama </label>
+                                        <input type="text" name="nama" class="form-control" id="nama" required placeholder="Masukkan Nama">
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label for="email" class="mb-2"> Email </label>
+                                        <input type="email" class="form-control" name="email" id="email" required placeholder="Masukkan Email">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="judul" class="mb-2 mt-3"> Judul </label>
+                                    <input type="text" class="form-control" name="judul" id="judul" required placeholder="Masukkan Judul">
+                                </div>
+                                <div class="form-group">
+                                    <label for="pesan" class="mb-2 mt-3"> Pesan </label>
+                                    <textarea class="form-control" name="pesan" rows="10" required placeholder="Masukkan Pesan"></textarea>
+                                </div>
+                                <hr>
+                                <div class="text-center">
+                                    <button type="submit" class="btn btn-success btn-block">
+                                        Kirim Pesan
+                                    </button>
+                                </div>
+                            </form>
                         </div>
-                        <div class="form-group">
-                            <label for="judul"> Judul </label>
-                            <input type="text" class="form-control" name="judul" id="judul" required placeholder="Masukkan Judul">
-                        </div>
-                        <div class="form-group">
-                            <label for="pesan"> Pesan </label>
-                            <textarea class="form-control" name="pesan" rows="10" required placeholder="Masukkan Pesan"></textarea>
-                        </div>
-                        <div class="text-center"><button type="submit">
-                            Kirim Pesan
-                        </button></div>
-                    </form>
+                    </div>
                 </div>
 
             </div>

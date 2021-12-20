@@ -34,7 +34,7 @@ use App\Http\Controllers\PostBlogController;
 use App\Http\Controllers\HubungiKamiController;
 
 Route::get("/user", function() {
-    return view("page.layouts.template_user");
+	return view("page.layouts.template_user");
 });
 
 Route::get("/form_aspirasi", [AspirasiController::class, "form_aspirasi"]);
@@ -42,6 +42,7 @@ Route::get("/aspirasi", [AspirasiController::class, "data_aspirasi"]);
 Route::post("/tambah", [AspirasiController::class, "tambah"]);
 Route::get("/galeri", [AppLandingController::class, "galeri"]);
 
+Route::post("/tambah_pesan", [AppLandingController::class, "tambah_pesan"]);
 Route::get("/register", [AppLandingController::class, "register"]);
 Route::post("/cek_register", [AppLandingController::class, "cek_register"]);
 
@@ -79,33 +80,36 @@ Route::prefix("page")->group(function() {
 
 	Route::prefix("bph")->group(function() {
 
-		Route::get("/dashboard", [AppController::class, "dashboard_bph"]);
+		Route::group(["middleware" => ["bph"]], function() {
+			Route::get("/dashboard", [AppController::class, "dashboard_bph"]);
 
-		Route::get("data_absen", [AbsensiController::class, "data_absen"]);
-		Route::get("data_absen_pertanggal", [AbsensiController::class, "data_absen_pertanggal"]);
-		Route::post("simpan_data_absen", [AbsensiController::class, "simpan_data_absen"]);
-		Route::post("simpan_data_absen_pertanggal", [AbsensiController::class, "simpan_data_absen_pertanggal"]);
-		Route::get("edit_absen_pertanggal", [AbsensiController::class, "edit_absen_pertanggal"]);
-		Route::post("edit_data_absen_pertanggal", [AbsensiController::class, "edit_data_absen_pertanggal"]);
-		Route::get("get_absen", [AbsensiController::class, "get_absen"]);
+			Route::get("data_absen", [AbsensiController::class, "data_absen"]);
+			Route::get("data_absen_pertanggal", [AbsensiController::class, "data_absen_pertanggal"]);
+			Route::post("simpan_data_absen", [AbsensiController::class, "simpan_data_absen"]);
+			Route::post("simpan_data_absen_pertanggal", [AbsensiController::class, "simpan_data_absen_pertanggal"]);
+			Route::get("edit_absen_pertanggal", [AbsensiController::class, "edit_absen_pertanggal"]);
+			Route::post("edit_data_absen_pertanggal", [AbsensiController::class, "edit_data_absen_pertanggal"]);
+			Route::get("get_absen", [AbsensiController::class, "get_absen"]);
 
-		Route::prefix("kas")->group(function() {
-			Route::get("/data_kas", [KasController::class, "data_kas_sekarang"]);
-			Route::post("/simpan_data_kas", [KasController::class, "simpan_data_kas"]);
-			Route::get("/data_kas_pertanggal", [KasController::class, "data_kas_pertanggal"]);
-			Route::post("/tambah_kas_pertanggal", [KasController::class, "tambah_kas_pertanggal"]);
-			Route::get("/edit_kas_pertanggal", [KasController::class, "edit_kas_pertanggal"]);
-			Route::post("/simpan_data_kas_pertanggal", [KasController::class, "simpan_data_kas_pertanggal"]);
+			Route::prefix("kas")->group(function() {
+				Route::get("/data_kas", [KasController::class, "data_kas_sekarang"]);
+				Route::post("/simpan_data_kas", [KasController::class, "simpan_data_kas"]);
+				Route::get("/data_kas_pertanggal", [KasController::class, "data_kas_pertanggal"]);
+				Route::post("/tambah_kas_pertanggal", [KasController::class, "tambah_kas_pertanggal"]);
+				Route::get("/edit_kas_pertanggal", [KasController::class, "edit_kas_pertanggal"]);
+				Route::post("/simpan_data_kas_pertanggal", [KasController::class, "simpan_data_kas_pertanggal"]);
+			});
+
+			Route::prefix("laporan")->group(function() {
+				Route::get("/data_absen", [AbsensiController::class, "laporan_data_absen"]);
+				Route::get("/data_absen/{id}/detail", [AbsensiController::class, "detail_laporan_absensi"]);
+
+				Route::get("/data_kas", [KasController::class, "laporan_data_kas"]);
+				Route::get("/data_kas/{id_divisi}/detail", [KasController::class, "detail_laporan_kas"]);	
+			});
+
+			Route::get("/logout", [LoginController::class, "logout"]);
 		});
-
-		Route::prefix("laporan")->group(function() {
-			Route::get("/data_absen", [AbsensiController::class, "laporan_data_absen"]);
-			Route::get("/data_absen/{id}/detail", [AbsensiController::class, "detail_laporan_absensi"]);
-
-			Route::get("/data_kas", [KasController::class, "laporan_data_kas"]);
-			Route::get("/data_kas/{id_divisi}/detail", [KasController::class, "detail_laporan_kas"]);	
-		});
-
 	});
 
 	Route::prefix("admin")->group(function() {
@@ -303,6 +307,6 @@ Route::prefix("page")->group(function() {
 			Route::get("/logout", [LoginController::class, "logout"]);
 		});
 
-	});
+});
 
 });

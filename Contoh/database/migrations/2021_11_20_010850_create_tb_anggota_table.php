@@ -23,7 +23,6 @@ class CreateTbAnggotaTable extends Migration
             $table->text('alamat');
             $table->integer('id_kelas')->default(0); 
             $table->string('gambar')->nullable();
-            $table->integer('id_angkatan')->nullable();
         });
     }
 

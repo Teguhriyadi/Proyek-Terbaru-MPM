@@ -11,18 +11,12 @@
   <meta name="copyright" content="M Ilham Teguhriyadi"> 
   <meta name="author" content="M Ilham Teguhriyadi">
 
-  <link rel="icon" href="{{ url('/gambar/MPM .jpg') }}">
+  <link rel="icon" href="{{ url('/gambar/logo_fix_mpm.png') }}">
   <title>.: MPM POLINDRA :.</title>
 
   <!-- Favicons -->
   @include("page.layouts.partials.css.style_user")
 
-  <!-- =======================================================
-  * Template Name: Arsha - v4.3.0
-  * Template URL: https://bootstrapmade.com/arsha-free-bootstrap-html-template-corporate/
-  * Author: BootstrapMade.com
-  * License: https://bootstrapmade.com/license/
-  ======================================================== -->
 </head>
 
 <body>
@@ -41,7 +35,7 @@
       <div class="container">
         <div class="row">
 
-          <div class="col-lg-3 col-md-6 footer-contact">
+          <div class="col-lg-4 col-md-6 footer-contact">
             <h3>MPM POLINDRA</h3>
             <p>
               Jln. Lohbener lama No.06 Kec. Lohbener Kab. Indramayu 45252
@@ -51,35 +45,33 @@
             </p>
           </div>
 
-          <div class="col-lg-3 col-md-6 footer-links">
-            <h4>Useful Links</h4>
+          <div class="col-lg-4 col-md-6 footer-links">
+            <h4>Kategori</h4>
             <ul>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Home</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">About us</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Services</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Terms of service</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Privacy policy</a></li>
+              <?php
+                $data_kategori = DB::table("tb_kategori")
+                            ->orderBy("id_kategori", "DESC")
+                            ->paginate(5);
+              ?>
+              @foreach($data_kategori as $kategori)
+              <li>
+                  <i class="bx bx-chevron-right"></i> 
+                  <a href="#">
+                    {{ $kategori->nama_kategori }}
+                  </a>
+              </li>
+              @endforeach
+              
             </ul>
           </div>
 
-          <div class="col-lg-3 col-md-6 footer-links">
-            <h4>Our Services</h4>
-            <ul>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Web Design</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Web Development</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Product Management</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Marketing</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Graphic Design</a></li>
-            </ul>
-          </div>
-
-          <div class="col-lg-3 col-md-6 footer-links">
+          <div class="col-lg-4 col-md-6 footer-links">
             <h4>Social Media</h4>
             <p>Apabila ada yang ingin dipertanyakan. Silahkan hubungi sosial media kami.</p>
             <div class="social-links mt-3">
-              <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
-              <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
-              <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
+              <a target="_blank" href="https://twitter.com/" class="twitter"><i class="bx bxl-twitter"></i></a>
+              <a target="_blank" href="https://www.facebook.com/" class="facebook"><i class="bx bxl-facebook"></i></a>
+              <a target="_blank" href="https://www.instagram.com/" class="instagram"><i class="bx bxl-instagram"></i></a>
             </div>
           </div>
 
