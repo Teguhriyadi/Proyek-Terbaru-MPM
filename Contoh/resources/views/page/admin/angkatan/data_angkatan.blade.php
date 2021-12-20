@@ -81,9 +81,13 @@
 										Non - Aktifkan
 									</a>
 									@elseif($angkatan->status == 0)
-									<a href="" class="btn btn-success btn-sm">
-										Aktifkan
-									</a>
+									<form method="POST" action="{{ url('/page/admin/angkatan/aktifkan') }}">
+										@csrf
+										<input type="hidden" name="id_angkatan" value="{{ $angkatan->id_angkatan }}">
+										<button type="submit" class="btn btn-success btn-sm">
+											Aktifkan
+										</button>
+									</form>
 									@else
 									
 									@endif
