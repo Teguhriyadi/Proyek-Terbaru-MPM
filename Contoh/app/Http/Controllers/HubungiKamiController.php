@@ -18,4 +18,13 @@ class HubungiKamiController extends Controller
 
     	return redirect()->back()->with("sukses", "Berhasil Terkirim");
     }
+
+    public function hubungi_kami()
+    {
+        $data = [
+            "data_hubungi_kami" => HubungiKami::orderBy("nama", "DESC")->get()
+        ];
+
+        return view("/page/admin/hubungi_kami/data_hubungi_kami", $data);
+    }
 }

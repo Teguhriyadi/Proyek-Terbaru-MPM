@@ -19,8 +19,8 @@ class DatabaseSeeder extends Seeder
         //$this->call(BagianSeeder::class);
         //$this->call(DivisiSeeder::class);
         //$this->call(AnggotaSeeder::class);
-        $this->call(JurusanSeeder::class);
-        $this->call(ProdiSeeder::class);
+        //$this->call(JurusanSeeder::class);
+        //$this->call(ProdiSeeder::class);
         $this->call(AkunSeeder::class);
         //$this->call(AnggotaSeeder::class);
     }

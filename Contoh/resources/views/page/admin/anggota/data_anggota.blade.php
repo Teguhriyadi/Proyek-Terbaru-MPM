@@ -54,7 +54,13 @@
 								<td class="text-center">{{ ++$no }}.</td>
 								<td class="text-center">{{ $anggota->nim }}</td>
 								<td>{{ $anggota->nama }}</td>
-								<td class="text-center">{{ $anggota->getKelas->nama_kelas }}</td>
+								<td class="text-center">
+									@if(empty($anggota->getKelas->nama_kelas))
+									<i><b>NULL</b></i>
+									@else
+									{{ $anggota->getKelas->nama_kelas }}
+									@endif
+								</td>
 								<td class="text-center">
 									<button onclick="editAnggota({{$anggota->nim}})" type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#modal-default-edit">
 										<i class="fa fa-edit"></i> Edit

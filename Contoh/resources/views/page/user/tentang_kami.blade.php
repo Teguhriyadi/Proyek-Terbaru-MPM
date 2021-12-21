@@ -17,13 +17,8 @@
         <div class="col-lg-4">
           <img src="{{ url('/gambar/MPM .jpg') }}" width="300px">
         </div>
-        <div class="col-lg-8 pt-4 pt-lg-0">
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-          tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-          quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-          consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-          cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-          proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+        <div class="col-lg-8 pt-4 pt-lg-0" style="text-align: justify; font-size: 20px;">
+          MPM Adalah Majelis Permusyawaratan Mahasiswa yang merupakan suatu wadah untuk menghimpun mahasiswa dan sebagai organisasi tertinggi di POLINDRA.
         </div>
       </div>
 
@@ -71,30 +66,36 @@
 
       </div>
 
-      <div class="col-lg-7 mt-5 mt-lg-0 d-flex align-items-stretch">
-        <form action="{{ url('/tambah') }}" method="post" role="form" class="php-email-form">
+      <div class="col-md-7 mt-5 mt-lg-0">
+        <form action="{{ url('/kirim_pesan') }}" method="post" role="form">
           {{ csrf_field() }}
-          <div class="row">
-            <div class="form-group col-md-6">
-              <label for="nama"> Nama </label>
-              <input type="text" name="nama" class="form-control" id="nama" required placeholder="Masukkan Nama">
+          <div class="card">
+            <div class="card-body">
+              <div class="row">
+                <div class="form-group col-md-6">
+                  <label for="nama"> Nama </label>
+                  <input type="text" name="nama" class="form-control mt-2 mb-3" id="nama" required placeholder="Masukkan Nama">
+                </div>
+                <div class="form-group col-md-6">
+                  <label for="email"> Email </label>
+                  <input type="email" class="form-control mt-2 mb-3" name="email" id="email" required placeholder="Masukkan Email">
+                </div>
+                <div class="form-group">
+                  <label for="judul"> Judul </label>
+                  <input type="text" class="form-control mt-2 mb-3" name="judul" id="judul" required placeholder="Masukkan Judul">
+                </div>
+                <div class="form-group">
+                  <label for="pesan"> Pesan </label>
+                  <textarea class="form-control" name="pesan" rows="10" required placeholder="Masukkan Pesan"></textarea>
+                </div>
+              </div>
             </div>
-            <div class="form-group col-md-6">
-              <label for="email"> Emai </label>
-              <input type="email" class="form-control" name="email" id="email" required placeholder="Masukkan Email">
+            <div class="card-footer">
+              <button type="submit" class="btn btn-success">
+                Kirim
+              </button>
             </div>
           </div>
-          <div class="form-group">
-            <label for="judul"> Judul </label>
-            <input type="text" class="form-control" name="judul" id="judul" required placeholder="Masukkan Judul">
-          </div>
-          <div class="form-group">
-            <label for="pesan"> Pesan </label>
-            <textarea class="form-control" name="pesan" rows="10" required placeholder="Masukkan Pesan"></textarea>
-          </div>
-          <div class="text-center"><button type="submit">
-            Kirim Pesan
-          </button></div>
         </form>
       </div>
 

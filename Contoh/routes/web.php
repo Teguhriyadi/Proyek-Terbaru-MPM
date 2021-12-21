@@ -33,13 +33,23 @@ use App\Http\Controllers\AngkatanController;
 use App\Http\Controllers\PostBlogController;
 use App\Http\Controllers\HubungiKamiController;
 
-Route::get("/user", function() {
-	return view("page.layouts.template_user");
+Route::group(["middleware" => ["guest"]], function() {
+
+	Route::get("/login", [AppLandingController::class, "login"]);
+	Route::post("/post_login", [AppLandingController::class, "post_login"]);
+
 });
 
-Route::get("/form_aspirasi", [AspirasiController::class, "form_aspirasi"]);
-Route::get("/aspirasi", [AspirasiController::class, "data_aspirasi"]);
-Route::post("/tambah", [AspirasiController::class, "tambah"]);
+Route::group(["middleware" => ["mahasiswa"]], function() {
+
+	Route::get("/form_aspirasi", [AspirasiController::class, "form_aspirasi"]);
+	Route::get("/aspirasi", [AspirasiController::class, "data_aspirasi"]);
+	Route::post("/tambah", [AspirasiController::class, "tambah"]);
+	Route::get("/logout", [AppLandingController::class, "logout"]);
+});
+
+Route::post("kirim_pesan", [AppLandingController::class, "kirim_pesan"]);
+
 Route::get("/galeri", [AppLandingController::class, "galeri"]);
 
 Route::post("/tambah_pesan", [AppLandingController::class, "tambah_pesan"]);
@@ -67,9 +77,11 @@ Route::get("/template", [AppController::class, "template"]);
 Route::get("/template_bph", function() {
 	return view("/page/layouts/template_bph");
 });
-Route::get("/template_user", [AppLandingController::class, "template_user"]);
 
-Route::get("/login", [AppLandingController::class, "login"]);
+
+Route::get("/register_akun", [AppLandingController::class, "register_akun"]);
+Route::post("/cek_register", [AppLandingController::class, "cek_register"]);
+Route::get("/template_user", [AppLandingController::class, "template_user"]);
 
 Route::prefix("page")->group(function() {
 
@@ -296,6 +308,11 @@ Route::prefix("page")->group(function() {
 			Route::prefix("/last-login")->group(function() {
 				Route::get("/", [LastLoginController::class, "index"]);
 			});
+
+			Route::get("/aktifkan_akun", [AppLandingController::class, "aktifkan_akun"]);
+			Route::get("/hubungi_kami", [HubungiKamiController::class, "hubungi_kami"]);
+
+			Route::post("/cek_aktifkan_akun", [AppLandingController::class, "cek_aktifkan_akun"]);
 
 			Route::prefix("/laporan")->group(function() {
 				Route::get("/data_absen", [LaporanController::class, "laporan_data_absen"]);

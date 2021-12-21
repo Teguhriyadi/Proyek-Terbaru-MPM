@@ -17,6 +17,6 @@ class Anggota extends Model
 
     public function getKelas()
     {
-    	return $this->belongsTo("App\Models\Model\Kelas", "id_kelas", "id_kelas");
+    	return $this->hasOne("App\Models\Model\Kelas", "id_kelas", "id_kelas");
     }
 }

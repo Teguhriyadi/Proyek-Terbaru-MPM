@@ -29,7 +29,7 @@ class KasController extends Controller
 			"status" => 1
 		]);
 
-		return redirect()->back();
+		return redirect()->back()->with("sukses", "Data Berhasil di Tambahkan");
 	}
 
 	public function data_kas_pertanggal()

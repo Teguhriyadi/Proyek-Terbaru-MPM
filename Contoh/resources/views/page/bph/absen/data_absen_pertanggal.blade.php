@@ -76,42 +76,22 @@
                 <form method="POST" action="{{ url('/page/bph/update_data_absen') }}">
                   {{ csrf_field() }}
                   <td class="text-center">
-                    <select class="form-control" name="status_absen" required>
-                      @if($absen->status_absen == 1)
-                      <option value="">- Pilih -</option>
-                      <option value="1" selected>Hadir</option>
-                      <option value="2">Sakit</option>
-                      <option value="3">Izin</option>
-                      <option value="4">Alfa</option>
-                      @elseif($absen->status_absen == 2)
-                      <option value="">- Pilih -</option>
-                      <option value="1">Hadir</option>
-                      <option value="2" selected>Sakit</option>
-                      <option value="3">Izin</option>
-                      <option value="4">Alfa</option>
-                      @elseif($absen->status_absen == 3)
-                      <option value="">- Pilih -</option>
-                      <option value="1">Hadir</option>
-                      <option value="2">Sakit</option>
-                      <option value="3" selected>Izin</option>
-                      <option value="4">Alfa</option>
-                      @elseif($absen->status_absen == 4)
-                      <option value="">- Pilih -</option>
-                      <option value="1">Hadir</option>
-                      <option value="2">Sakit</option>
-                      <option value="3">Izin</option>
-                      <option value="4" selected>Alfa</option>
-                      @else
-                      <option value="">- Pilih -</option>
-                      <option value="1">Hadir</option>
-                      <option value="2">Sakit</option>
-                      <option value="3">Izin</option>
-                      <option value="4">Alfa</option>
-                      @endif
-                    </select>
+                    @if($absen->status_absen == 1)
+                    Hadir
+                    @elseif($absen->status_absen == 2)
+                    Sakit
+                    @elseif($absen->status_absen == 3)
+                    Izin
+                    @elseif($absen->status_absen == 4)
+                    Alfa
+                    @elseif($absen->status_absen == 5)
+                    Terlambat
+                    @else
+                    Tidak Ada
+                    @endif
                   </td>
-                  <td class="text-center">
-                    <input type="text" class="form-control" name="keterangan" value="{{ $absen->keterangan }}" required>
+                  <td>
+                    {{ $absen->keterangan }}
                   </td>
                   <td class="text-center">
                     <button onclick="editAbsenPerTanggal({{$absen->id_absensi}})" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#modal-default-edit" type="button">

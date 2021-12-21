@@ -22,6 +22,12 @@
                    </a> 
                 </li>
                 @if(empty(auth()->user()->nama))
+                <li>
+                    <a class="getstarted" href="{{ url('/login') }}">
+                        Login
+                    </a>
+                </li>
+                @elseif(auth()->user()->nama)
                 <li class="dropdown">
                     <a href="#">
                         <span>Aspirasi</span> 
@@ -36,14 +42,12 @@
                         </li>
                     </ul>
                 </li>
-                @else
-
-                @endif
                 <li>
-                    <a class="getstarted" href="{{ url('/login') }}">
-                        Login
+                    <a class="getstarted" href="{{ url('/logout') }}">
+                        Logout
                     </a>
                 </li>
+                @endif
             </ul>
             <i class="bi bi-list mobile-nav-toggle"></i>
         </nav><!-- .navbar -->

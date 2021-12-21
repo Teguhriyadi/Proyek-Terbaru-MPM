@@ -74,16 +74,32 @@
 							?>
 							<tr>
 								<td class="text-center">{{ ++$no }}.</td>
-								<td class="text-center">{{ $divisi->getAnggota->nim }}</td>
-								<td>{{ $divisi->getAnggota->nama }}</td>
+								<td class="text-center">
+									@if(empty($divisi->getAnggota->nim))
+									<i><b>NULL</b></i>
+									@else
+									{{ $divisi->getAnggota->nim }}
+									@endif
+								</td>
+								<td>
+									@if(empty($divisi->getAnggota->nama))
+									<i><b>NULL</b></i>
+									@else
+									{{ $divisi->getAnggota->nama }}
+									@endif
+								</td>
 								<td class="text-center">{{ $jumlah_hadir }}</td>
 								<td class="text-center">{{ $jumlah_sakit }}</td>
 								<td class="text-center">{{ $jumlah_izin }}</td>
 								<td class="text-center">{{ $jumlah_alfa }}</td>
 								<td class="text-center">
+									@if(empty($divisi->getAnggota->nim))
+									<i><b>Tidak Bisa Detail</b></i>
+									@else
 									<a href="{{ url('/page/admin/laporan/data_absen') }}/{{ $divisi->id_divisi }}/detail" class="btn btn-success btn-sm">
 										<i class="fa fa-search"></i> Detail
 									</a>
+									@endif
 								</td>
 							</tr>
 							@endforeach

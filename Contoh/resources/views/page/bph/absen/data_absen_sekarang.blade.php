@@ -141,4 +141,19 @@ $(function () {
 });
 </script>
 
+@if(session("sukses"))
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+<script type="text/javascript">
+  swal({
+    title: "Berhasil!",
+    text: "{{ session('sukses') }}",
+    icon: "success",
+    button: "OK",
+  });
+
+</script>
+
+@endif
+
 @endsection

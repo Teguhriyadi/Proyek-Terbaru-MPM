@@ -19,4 +19,9 @@ class Kelas extends Model
     {
     	return $this->hasOne("App\Models\Model\Prodi", "id_prodi", "id_prodi");
     }
+
+    public function getAnggota()
+    {
+    	return $this->hasOne("App\Models\Model\Anggota", "id_kelas", "id_kelas");
+    }
 }

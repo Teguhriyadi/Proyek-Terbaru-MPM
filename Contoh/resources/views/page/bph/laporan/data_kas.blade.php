@@ -40,6 +40,7 @@
                 <th class="text-center">No.</th>
                 <th class="text-center">NIM</th>
                 <th>Nama</th>
+                <th class="text-center">Divisi</th>
                 <th class="text-center">Aksi</th>
               </tr>
             </thead>
@@ -50,6 +51,7 @@
                 <td class="text-center">{{ ++$no }}.</td>
                 <td class="text-center">{{ $divisi->getAnggota->nim }}</td>
                 <td>{{ $divisi->getAnggota->nama }}</td>
+                <td class="text-center">{{ $divisi->getBagian->nama_bagian }} - {{ $divisi->getJabatan->nama_jabatan }}</td>
                 <td class="text-center">
                   <a href="{{ url('/page/bph/laporan/data_kas') }}/{{ $divisi->id_divisi }}/detail" class="btn btn-success btn-sm">
                     <i class="fa fa-search"></i> Detail

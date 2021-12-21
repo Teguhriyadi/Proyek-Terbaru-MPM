@@ -19,15 +19,6 @@ class KategoriController extends Controller
 
 	public function tambah(Request $request)
 	{
-		$nama_kategori = $request->nama_kategori;
-
-		$cek = Kategori::where("nama_kategori", $nama_kategori)->get();
-
-		if ($cek != "") 
-		{
-			return redirect()->back()->with("double", "Tidak Boleh Duplikasi Data");
-		}
-
 		Kategori::create([
 			"nama_kategori" => $request->nama_kategori,
 			"slug" => Str::slug($request->nama_kategori)
@@ -48,14 +39,9 @@ class KategoriController extends Controller
 
 	public function simpan(Request $request)
 	{
-		$nama_kategori = $request->nama_kategori;
-
-		$cek = Kategori::where("nama_kategori", $nama_kategori)->get();
-
-		if ($cek != "")
-		{
-			return redirect()->back()->with("double", "Tidak Boleh Duplikasi Data");
-		}
+		Kategori::where("id_kategori", $request->id_kategori)->update([
+			"nama_kategori" => $request->nama_kategori
+		]);
 
 		return redirect()->back()->with("sukses", "Data Berhasil di Simpan");
 	}

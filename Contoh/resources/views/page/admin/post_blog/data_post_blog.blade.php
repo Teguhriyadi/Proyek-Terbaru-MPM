@@ -52,16 +52,21 @@
 							@foreach($blog_post as $blog)
 							<tr>
 								<td class="text-center">{{ ++$no }}.</td>
-								<td class="text-center">{{ $blog->getKategori->nama_kategori }}</td>
-								<td></td>
-								<td class="text-center"></td>
+								<td class="text-center">
+									@if(empty($blog->getKategori->nama_kategori))
+									<i><b>NULL</b></i>
+									@else
+									{{ $blog->getKategori->nama_kategori }}
+									@endif
+								</td>
+								<td>{{ $blog->slug }}</td>
+								<td class="text-center">{{ $blog->tanggal_upload }}</td>
 								<td class="text-center">
 									<a href="{{ url('/page/admin/post_blog/edit') }}/{{ $blog->id }}" class="btn btn-warning btn-sm">
 										<i class="fa fa-edit"></i> Edit
 									</a>
 									<form onsubmit="return false" id="form" class="d-inline">
-										{{ csrf_field() }}
-										
+										{{ csrf_field() }}	
 										<button id="btn-hapus" class="btn btn-danger btn-sm" onclick="hapus({{$blog->id}})">
 											<i class="fa fa-trash-o"></i> Hapus
 										</button>

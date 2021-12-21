@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Model\Aspirasi;
+use Illuminate\Support\Facades\Auth;
 
 class AspirasiController extends Controller
 {
@@ -18,6 +20,13 @@ class AspirasiController extends Controller
 
     public function tambah(Request $request)
     {
-    	
+    	Aspirasi::create([
+            "nim_anggota" => auth()->user()->nim,
+            "judul_aspirasi" => $request->judul_aspirasi,
+            "pesan" => $request->pesan,
+            "tanggal_aspirasi" => date("Y-m-d")
+        ]);
+
+        return redirect()->back();
     }
 }

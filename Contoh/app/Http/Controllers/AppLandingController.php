@@ -50,41 +50,69 @@ class AppLandingController extends Controller
         return view("page/user/auth/login");
     }
 
-    public function kirim_login(Request $request)
+    public function post_login(Request $request)
     {
-        if (Auth::attempt(["email" => $request->email, "password" => $request->password])) {
+        $email = $request->email;
+
+        $data = User::where("email", $email)->first();
+
+        $role = $data->id_role;
+
+        if (Auth::attempt(["email" => $request->email, "password" => $request->password, "id_role" => $role, "status" => 1])) {
+
             $request->session()->regenerate();
 
             return redirect("/");
+
         } else {
+
             return redirect("/");
         }
     }
 
-    public function register()
+    public function logout()
     {
-        return view("page/user/register");
+        Auth::logout();
+
+        return redirect("/");
+    }
+
+    public function register_akun()
+    {
+        return view("/page/user/auth/register");
     }
 
     public function cek_register(Request $request)
     {
-        $pass = $request->password;
-        $retype = $request->retype_password;
-
-        if ($pass != $retype)
-        {
-
-            return redirect()->back()->with("gagal", "Konfirmasi Password Tidak Sesuai");
-
-        }
-
         User::create([
+            "username" => $request->nama,
             "nama" => $request->nama,
             "email" => $request->email,
-            "password" => bcrypt($request->password)
+            "password" => bcrypt($request->password),
+            "id_role" => 3,
+            "nim" => $request->nim,
+            "status" => 0
         ]);
 
-        return redirect("/")->with("sukses", "Data Berhasil di Inputkan");
+        return redirect("/login");
+    }
+
+    public function aktifkan_akun()
+    {
+        $data = [
+            "data_akun" => User::where("nim", "!=", "")->where("status", 0)->get()
+        ];
+
+        return view("/page/admin/aktifkan_akun/data", $data);
+    }
+
+    public function cek_aktifkan_akun(Request $request)
+    {
+        User::where("id", $request->id)->update([
+            "status" => 1
+        ]);   
+
+        return redirect()->back()->with("sukses", "Data Berhasil di Aktifkan");
     }
 
     public function tambah_pesan(Request $request)
@@ -106,5 +134,17 @@ class AppLandingController extends Controller
         ];
 
         return view("/page/user/galeri", $data);
+    }
+
+    public function kirim_pesan(Request $request)
+    {
+        HubungiKami::create([
+            "nama" => $request->nama,
+            "email" => $request->email,
+            "judul" => $request->judul,
+            "pesan" => $request->pesan
+        ]);
+
+        return redirect()->back();
     }
 }

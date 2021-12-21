@@ -46,7 +46,7 @@
 						</div>
 					</div>
 					<div class="card-footer">
-						<button type="submit" class="btn btn-primary btn-sm">
+						<button type="submit" class="btn btn-success btn-sm">
 							<i class="fa fa-save"></i> Simpan
 						</button>
 						<button type="reset" class="btn btn-danger btn-sm">

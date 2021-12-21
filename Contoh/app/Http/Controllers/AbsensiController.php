@@ -80,7 +80,7 @@ class AbsensiController extends Controller
             "nim_anggota" => $request->nim_anggota
         ]); 
 
-        return redirect()->back();
+        return redirect()->back()->with("sukses", "Data Berhasil di Tambahkan");
     }
 
     public function data_absen_pertanggal()

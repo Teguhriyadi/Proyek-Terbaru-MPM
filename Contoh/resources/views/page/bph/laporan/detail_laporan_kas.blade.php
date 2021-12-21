@@ -121,7 +121,13 @@
             		<td class="text-center">Rp. {{ number_format($kas->bayar) }}</td>
             		<td class="text-center">{{ $kas->tanggal }}</td>
             		<td>{{ $kas->keterangan }}</td>
-            		<td class="text-center"></td>
+            		<td class="text-center">
+                @if($kas->status == 1)
+                Masuk
+                @else
+                Tidak Masuk
+                @endif  
+                </td>
             	</tr>
             	@endforeach
             </tbody>

@@ -101,6 +101,12 @@
             <p>Profil</p>
           </a>
         </li>
+        <li class="nav-item">
+          <a href="{{ url('/page/admin/hubungi_kami') }}" class="nav-link">
+            <i class="fa fa-circle nav-icon"></i>
+            <p>Hubungi Kami</p>
+          </a>
+        </li>
       </ul>
     </li>
     <li class="nav-header">Report</li>
@@ -181,9 +187,9 @@
           </a>
         </li>
         <li class="nav-item">
-          <a href="{{ url('/page/admin/last-login/') }}" class="nav-link">
+          <a href="{{ url('/page/admin/aktifkan_akun/') }}" class="nav-link">
             <i class="fa fa-sign-out nav-icon"></i>
-            <p>Last Login</p>
+            <p>Aktifkan Akun</p>
           </a>
         </li>
       </ul>

@@ -11,37 +11,44 @@
 		<div class="container" data-aos="fade-up">
 
 			<div class="section-title">
-				<h2>LOGIN</h2>
+				<h2>REGISTER</h2>
 				<p>
-					Silahkan login terlebih dahulu
+					Daftar Akun Terlebih Dahulu Untuk Membuat Akun
 				</p>
 			</div>
 
 			<div class="row">
 
 				<center>
-					<div class="col-md-6 mt-5 mt-lg-0">
+					<div class="col-md-8 mt-5 mt-lg-0">
 						<div class="card">
 							<div class="card-body">
-								<form action="{{ url('/post_login') }}" method="post">
+								<form action="{{ url('/cek_register') }}" method="post">
 									{{ csrf_field() }}
 									<div class="form-group">
+										<label for="username" style="float: left; margin-bottom: 5px;"> NIM </label>
+										<input type="text" class="form-control mt-3" name="nim" id="nim" required placeholder="NIM">
+									</div>
+									<br>
+									<div class="form-group">
+										<label for="password" style="float: left; margin-bottom: 5px;"> Nama </label>
+										<input type="text" class="form-control mt-3" name="nama" id="nama" required placeholder="Masukkan Nama">
+									</div>
+									<br>
+									<div class="form-group">
 										<label for="email" style="float: left; margin-bottom: 5px;"> Email </label>
-										<input type="text" class="form-control mt-3" name="email" id="email" required placeholder="Username">
+										<input type="email" class="form-control" id="email" name="email" required placeholder="Masukkan Email">
 									</div>
 									<br>
 									<div class="form-group">
 										<label for="password" style="float: left; margin-bottom: 5px;"> Password </label>
-										<input type="password" class="form-control mt-3" name="password" id="password" required placeholder="Masukkan Password">
+										<input type="password" class="form-control" id="password" name="password" required placeholder="Masukkan Password">
 									</div>
 									<hr>
 									<div class="text-center">
-										<button type="submit" class="btn btn-primary btn-block btn-sm" style="float: left; padding: 5px;">
-											Kirim Pesan
+										<button type="submit" class="btn btn-primary btn-block btn-sm" style="float: left; padding: 10px;">
+											Daftar Akun
 										</button>
-										<a href="{{ url('/register_akun') }}" style="float: right;">
-											Tidak Punya Akun ?
-										</a>
 									</div>
 								</form>
 							</div>
@@ -95,7 +102,7 @@
 				</div>
 
 				<div class="col-lg-7 mt-5 mt-lg-0 d-flex align-items-stretch">
-					<form action="{{ url('/post_login') }}" method="post" role="form" class="php-email-form">
+					<form action="{{ url('/tambah') }}" method="post" role="form" class="php-email-form">
 						{{ csrf_field() }}
 						<div class="row">
 							<div class="form-group col-md-6">

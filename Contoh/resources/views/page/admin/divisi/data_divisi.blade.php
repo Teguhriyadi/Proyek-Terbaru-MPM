@@ -96,7 +96,7 @@
 					</h3>
 				</div>
 				<div class="card-body">
-					<table id="example1" class="table table-bordered table-striped table-responsive">
+					<table id="example1" class="table table-bordered table-striped">
 						<thead>
 							<tr>
 								<th class="text-center">No.</th>
@@ -111,9 +111,27 @@
 							@foreach($data_divisi as $divisi)
 							<tr>
 								<td class="text-center">{{ ++$no }}.</td>
-								<td class="text-center">{{ $divisi->getBagian->nama_bagian }}</td>
-								<td class="text-center">{{ $divisi->getJabatan->nama_jabatan }}</td>
-								<td class="text-center">{{ $divisi->getAnggota->nama }}</td>
+								<td class="text-center">
+									@if(empty($divisi->getBagian->nama_bagian))
+									<i><b>NULL</b></i>
+									@else
+									{{ $divisi->getBagian->nama_bagian }}
+									@endif
+								</td>
+								<td class="text-center">
+									@if(empty($divisi->getJabatan->nama_jabatan))
+									<i><b>NULL</b></i>
+									@else
+									{{ $divisi->getJabatan->nama_jabatan }}
+									@endif
+								</td>
+								<td class="text-center">
+									@if(empty($divisi->getAnggota->nama))
+									<i><b>NULL</b></i>
+									@else
+									{{ $divisi->getAnggota->nama }}
+									@endif
+								</td>
 								<td class="text-center">
 									<a href="{{ url('/page/admin/divisi/edit') }}/{{ $divisi->id_divisi }}" class="btn btn-warning btn-sm">
 										<i class="fa fa-edit"></i> Edit

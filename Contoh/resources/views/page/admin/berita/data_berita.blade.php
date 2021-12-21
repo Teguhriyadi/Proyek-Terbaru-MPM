@@ -145,7 +145,6 @@
 							<tr>
 								<th class="text-center">No.</th>
 								<th class="text-center">Nama Berita</th>
-								<th class="text-center">Status</th>
 								<th class="text-center">Aksi</th>
 							</tr>
 						</thead>
@@ -156,27 +155,6 @@
 								<td class="text-center">{{ ++$no }}</td>
 								<td class="text-center">
 									<img src="{{ url('/storage/'.$berita->gambar) }}" width="100">
-								</td>
-								<td class="text-center">
-									@if($berita->status == 0)
-										<form method="POST" action="{{ url('/page/admin/berita/aktifkan') }}">
-											@csrf
-											<input type="hidden" name="id" value="{{ $berita->id }}">
-											<button type="submit" class="btn btn-success btn-sm">
-												Aktifkan
-											</button>
-										</form>
-									@elseif($berita->status == 1)
-										<form method="POST" action="{{ url('/page/admin/berita/non_aktifkan') }}">
-											@csrf
-											<input type="hidden" id="id" name="id" value="{{ $berita->id }}">
-											<button type="submit" class="btn btn-danger btn-sm">
-												Non - Aktifkan
-											</button>
-										</form>
-									@else
-										Tidak Ada
-									@endif
 								</td>
 								<td class="text-center">
 									<a href="{{ url('/page/admin/berita/edit') }}/{{ $berita->id }}" class="btn btn-warning btn-sm">

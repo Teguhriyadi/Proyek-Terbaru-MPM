@@ -17,17 +17,16 @@ class Divisi extends Model
 
     public function getAnggota()
     {
-    	return $this->belongsTo("App\Models\Model\Anggota", "nim_anggota", "nim");
+    	return $this->hasOne("App\Models\Model\Anggota", "nim", "nim_anggota");
     }
 
     public function getBagian()
     {
-    	return $this->belongsTo("App\Models\Model\Bagian", "id_bagian", "id_bagian");
+    	return $this->hasOne("App\Models\Model\Bagian", "id_bagian", "id_bagian");
     }
-
 
     public function getJabatan()
     {
-    	return $this->belongsTo("App\Models\Model\Jabatan", "id_jabatan", "id_jabatan");
+    	return $this->hasOne("App\Models\Model\Jabatan", "id_jabatan", "id_jabatan");
     }
 }
