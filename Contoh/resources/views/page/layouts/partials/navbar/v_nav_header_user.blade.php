@@ -12,9 +12,14 @@
                     <a class="nav-link scrollto" href="{{ url('/tentang_kami') }}">Tentang Kami</a>
                 </li>
                 <li>
-                    <a href="nav-link scrollto" href="">
+                    <a class="nav-link scrollto" href="{{ url('/galeri') }}">
                         Galeri
                     </a>
+                </li>
+                <li>
+                   <a href="{{ url('/blog') }}" class="nav-link">
+                       Blog
+                   </a> 
                 </li>
                 @if(empty(auth()->user()->nama))
                 <li class="dropdown">
@@ -36,7 +41,7 @@
                 @endif
                 <li>
                     <a class="getstarted" href="{{ url('/login') }}">
-                    Login
+                        Login
                     </a>
                 </li>
             </ul>

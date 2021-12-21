@@ -7,6 +7,7 @@ use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Model\Berita;
 use App\Models\Model\HubungiKami;
+use App\Models\Model\PostBlog;
 
 class AppLandingController extends Controller
 {
@@ -31,7 +32,12 @@ class AppLandingController extends Controller
 
     public function blog()
     {
-    	return view("page/user/blog");
+        $data = [
+            "data_blog_post" => PostBlog::orderBy("title", "DESC")->get(),
+            "data_berita" => Berita::all()
+        ];
+
+    	return view("page/user/blog", $data);
     }
 
     public function kontak()
