@@ -280,6 +280,8 @@ Route::prefix("page")->group(function() {
 				Route::get("/edit/{id_angkatan}", [AngkatanController::class, "edit"]);
 				Route::post("/simpan", [AngkatanController::class, "simpan"]);
 				Route::delete("/hapus/{id_angkatan}", [AngkatanController::class, "hapus"]);
+				Route::post("/aktifkan", [AngkatanController::class, "aktifkan"]);
+				Route::post("/non_aktifkan", [AngkatanController::class, "non_aktifkan"]);
 			});
 
 			Route::prefix("/last-login")->group(function() {

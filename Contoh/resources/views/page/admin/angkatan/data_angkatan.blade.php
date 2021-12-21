@@ -77,9 +77,13 @@
 								<td class="text-center">{{ $angkatan->tahun_angkatan }}</td>
 								<td class="text-center">
 									@if($angkatan->status == 1)
-									<a href="" class="btn btn-danger btn-sm">
-										Non - Aktifkan
-									</a>
+									<form method="POST" action="{{ url('/page/admin/angkatan/non_aktifkan') }}">
+										@csrf
+										<input type="hidden" name="id_angkatan" value="{{ $angkatan->id_angkatan }}">
+										<button type="submit" class="btn btn-success btn-sm">
+											Aktifkan
+										</button>
+									</form>
 									@elseif($angkatan->status == 0)
 									<form method="POST" action="{{ url('/page/admin/angkatan/aktifkan') }}">
 										@csrf
