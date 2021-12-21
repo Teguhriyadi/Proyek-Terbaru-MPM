@@ -48,4 +48,22 @@ class AngkatanController extends Controller
 
     	return redirect()->back()->with("sukses", "Data Berhasil di Ubah");
     }
+
+	public function aktifkan(Request $request)
+	{
+		Angkatan::where("id_angkatan", $request->id_angkatan)->update([
+			"status" => "1"
+		]);
+
+		return redirect()->back()->with("sukses", "Data Berhasil di Aktifkan");
+	}
+
+	public function non_aktifkan(Request $request)
+	{
+		Angkatan::where("id_angkatan", $request->id_angkatan)->update([
+			"status" => 0
+		]);
+
+		return redirect()->back()->with("sukses", "Data Berhasil di Non_Aktifkan");
+	}
 }
