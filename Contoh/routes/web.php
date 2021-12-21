@@ -252,6 +252,7 @@ Route::prefix("page")->group(function() {
 				Route::post("/tambah", [PostBlogController::class, "tambah"]);
 				Route::get("/edit/{id}", [PostBlogController::class, "edit"]);
 				Route::post("/simpan", [PostBlogController::class, "simpan"]);
+				Route::delete("/hapus/{id}", [PostBlogController::class, "hapus"]);
 			});
 
 			// Data Profil

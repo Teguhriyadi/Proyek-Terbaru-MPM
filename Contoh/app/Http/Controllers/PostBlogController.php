@@ -84,4 +84,17 @@ class PostBlogController extends Controller
 
 		return redirect("/page/admin/post_blog/")->with("sukses", "Data Berhasil di Tambahkan");	
 	}
+
+	public function hapus(Request $request)
+	{
+		$catch = $request->id;
+
+		$tampung = PostBlog::where("id", $catch)->first();
+
+		Storage::delete($tampung->gambar);
+
+		PostBlog::where("id", $request->id)->delete();
+
+		return redirect()->back()->with("sukses", "Data Berhasil di Hapus");
+	}
 }

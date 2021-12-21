@@ -59,10 +59,10 @@
 									<a href="{{ url('/page/admin/post_blog/edit') }}/{{ $blog->id }}" class="btn btn-warning btn-sm">
 										<i class="fa fa-edit"></i> Edit
 									</a>
-									<form method="POST" class="d-inline">
-										@csrf
-										<input type="hidden" name="id" value="{{ $blog->id }}">
-										<button type="submit" class="btn btn-danger btn-sm">
+									<form onsubmit="return false" id="form" class="d-inline">
+										{{ csrf_field() }}
+										
+										<button id="btn-hapus" class="btn btn-danger btn-sm" onclick="hapus({{$blog->id}})">
 											<i class="fa fa-trash-o"></i> Hapus
 										</button>
 									</form>
@@ -114,7 +114,7 @@ $(function () {
 </script>
 
 <script type="text/javascript">
-	function hapus(id_role)
+	function hapus(id)
 	{
 		swal({
 			title: "Yakin ? Ingin Menghapus Data Ini ?",
@@ -127,9 +127,9 @@ $(function () {
 		.then((willDelete) => {
 			if (willDelete) {
 				$.ajax({
-					url : "{{ url('/page/admin/role/hapus') }}/" + id_role,
+					url : "{{ url('/page/admin/post_blog/hapus') }}/" + id,
 					type : "POST",
-					data : { _method : 'delete', _token : $('input[name="_token"]').val(), id_role : id_role },
+					data : { _method : 'delete', _token : $('input[name="_token"]').val(), id : id },
 					success : function (res) {
 						swal({
 							title: "Berhasil!",
