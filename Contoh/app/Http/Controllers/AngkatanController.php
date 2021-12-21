@@ -34,10 +34,10 @@ class AngkatanController extends Controller
     {
     	$data = [
     		"edit" => Angkatan::where("id_angkatan", $id_angkatan)->first(),
-    		"data_role" => Angkatan::where("id_angkatan", "!=" , $id_angkatan)->orderBy("tahun_angkatan", "DESC")->get()
+    		"data_angkatan" => Angkatan::where("id_angkatan", "!=" , $id_angkatan)->orderBy("tahun_angkatan", "DESC")->get()
     	];
 
-    	return view("/page/admin/angkatan/edit_data_role", $data);
+    	return view("/page/admin/angkatan/edit_data_angkatan", $data);
     }
     
     public function simpan(Request $request)

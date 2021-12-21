@@ -76,15 +76,15 @@
 								<td class="text-center">{{ ++$no }}.</td>
 								<td class="text-center">{{ $angkatan->tahun_angkatan }}</td>
 								<td class="text-center">
-									@if($angkatan->status == 1)
+									@if($angkatan->status == "1")
 									<form method="POST" action="{{ url('/page/admin/angkatan/non_aktifkan') }}">
 										@csrf
 										<input type="hidden" name="id_angkatan" value="{{ $angkatan->id_angkatan }}">
-										<button type="submit" class="btn btn-success btn-sm">
-											Aktifkan
+										<button type="submit" class="btn btn-danger btn-sm">
+											Non - Aktifkan
 										</button>
 									</form>
-									@elseif($angkatan->status == 0)
+									@elseif($angkatan->status == "0")
 									<form method="POST" action="{{ url('/page/admin/angkatan/aktifkan') }}">
 										@csrf
 										<input type="hidden" name="id_angkatan" value="{{ $angkatan->id_angkatan }}">
