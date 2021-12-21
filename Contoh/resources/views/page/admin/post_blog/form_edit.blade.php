@@ -17,7 +17,7 @@
 				<li class="breadcrumb-item">
 					<a href="{{ url('/page/admin/post_blog/') }}"> Data Blog Post </a>
 				</li>
-				<li class="breadcrumb-item active"> Form Tambah Blog Post </li>
+				<li class="breadcrumb-item active"> Form Edit Blog Post </li>
 			</ol>
 		</div>
 	</div>
@@ -30,12 +30,14 @@
 <div class="container-fluid">
 	<div class="row">
 		<div class="col-md-12">
-			<form method="POST" action="{{ url('/page/admin/post_blog/tambah') }}" enctype="multipart/form-data">
+			<form method="POST" action="{{ url('/page/admin/post_blog/simpan') }}" enctype="multipart/form-data">
 				{{ csrf_field() }}
+				<input type="hidden" name="id" value="{{ $edit->id }}">
+				<input type="hidden" name="oldImage" value="{{ $edit->gambar }}">
 				<div class="card">
 					<div class="card-header">
 						<h3 class="card-title">
-							<i class="fa fa-plus"></i> Form Tambah Blog Post
+							<i class="fa fa-edit"></i> Form Edit Blog Post
 						</h3>
 					</div>
 					<div class="card-body">
@@ -46,9 +48,15 @@
 									<select class="form-control select2bs4" id="id_kategori" name="id_kategori" style="width: 100%;">
 										<option value="">- Pilih -</option>
 										@foreach($data_kategori as $kategori)
-										<option value="{{ $kategori->id_kategori }}">
-											{{ $kategori->nama_kategori }}
-										</option>
+											@if($edit->id_kategori == $kategori->id_kategori)
+												<option value="{{ $kategori->id_kategori }}" selected>
+													{{ $kategori->nama_kategori }}
+												</option>
+											@else
+												<option value="{{ $kategori->id_kategori }}">
+													{{ $kategori->nama_kategori }}
+												</option>
+											@endif
 										@endforeach
 									</select>
 								</div>
@@ -56,23 +64,27 @@
 							<div class="col-md-6">
 								<div class="form-group">
 									<label for="title"> Judul </label>
-									<input type="text" class="form-control" id="title" name="title" placeholder="Masukkan Judul">
+									<input type="text" class="form-control" id="title" name="title" placeholder="Masukkan Judul" value="{{ $edit->title }}">
 								</div>
 							</div>
 						</div>
 						<div class="form-group">
 							<label for="body"> Deskripsi </label>
-							<textarea id="summernote" name="body">Masukkan Deksripsi</textarea>
+							<textarea id="summernote" name="body">{{ $edit->body }}</textarea>
 						</div>
 						<div class="form-group">
 							<label for="gambar"> Gambar </label>
+							@if($edit->gambar)
+							<img src="{{ url('/storage') }}/{{ $edit->gambar }}" class="img-preview img-fluid mb-3 col-sm-5 d-block">
+							@else
 							<img class="img-preview img-fluid mb-3 col-sm-5">
-							<input type="file" class="form-control" id="gambar" name="gambar" placeholder="Masukkan Nama Bagian" onchange="previewImage()">
+							@endif
+							<input type="file" class="form-control" id="gambar" name="gambar" onchange="previewImage()">
 						</div>
 					</div>
 					<div class="card-footer">
-						<button type="submit" class="btn btn-primary btn-sm">
-							<i class="fa fa-plus"></i> Tambah
+						<button type="submit" class="btn btn-success btn-sm">
+							<i class="fa fa-save"></i> Simpan
 						</button>
 						<button type="reset" class="btn btn-danger btn-sm">
 							<i class="fa fa-refresh"></i> Batal

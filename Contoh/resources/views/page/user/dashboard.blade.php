@@ -46,7 +46,7 @@
         <div class="container" data-aos="fade-up">
 
             <div class="section-title">
-                <h2>{{ auth()->user()->nama }}</h2>
+                <h2>Tentang Kami</h2>
             </div>
 
             <div class="row content">

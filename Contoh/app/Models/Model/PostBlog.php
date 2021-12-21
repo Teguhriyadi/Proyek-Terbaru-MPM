@@ -14,4 +14,9 @@ class PostBlog extends Model
     protected $guarded = [''];
 
     public $timestamps = false;
+
+    public function getKategori()
+    {
+    	return $this->hasOne("App\Models\Model\Kategori", "id_kategori", "id_kategori");
+    }
 }

@@ -17,7 +17,7 @@ class Jurusan extends Model
 
     public function getProdi()
     {
-    	return $this->hasMany("App\Models\Model\Prodi", "id_jurusan", "id_jurusan");
+    	return $this->hasOne("App\Models\Model\Prodi", "id_jurusan", "id_jurusan");
     }
 
 }

@@ -17,6 +17,6 @@ class Kelas extends Model
 
     public function getProdi()
     {
-    	return $this->belongsTo("App\Models\Model\Prodi", "id_prodi", "id_prodi");
+    	return $this->hasOne("App\Models\Model\Prodi", "id_prodi", "id_prodi");
     }
 }

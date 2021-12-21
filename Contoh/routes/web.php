@@ -242,12 +242,16 @@ Route::prefix("page")->group(function() {
 				Route::get("/", [KategoriController::class, "index"]);
 				Route::post("/tambah", [KategoriController::class, "tambah"]);
 				Route::get("/edit/{id_kategori}", [KategoriController::class, "edit"]);
+				Route::post("/simpan", [KategoriController::class, "simpan"]);
+				Route::delete("/hapus/{id_kategori}", [KategoriController::class, "hapus"]);
 			});
 
 			Route::prefix("/post_blog")->group(function() {
 				Route::get("/", [PostBlogController::class, "index"]);
 				Route::get("/form_tambah", [PostBlogController::class, "form_tambah"]);
 				Route::post("/tambah", [PostBlogController::class, "tambah"]);
+				Route::get("/edit/{id}", [PostBlogController::class, "edit"]);
+				Route::post("/simpan", [PostBlogController::class, "simpan"]);
 			});
 
 			// Data Profil

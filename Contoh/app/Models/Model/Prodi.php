@@ -17,11 +17,11 @@ class Prodi extends Model
 
     public function getJurusan()
     {
-    	return $this->belongsTo("App\Models\Model\Jurusan", "id_jurusan", "id_jurusan");
+    	return $this->hasOne("App\Models\Model\Jurusan", "id_jurusan", "id_jurusan");
     }
 
     public function setKelas()
     {
-    	return $this->hasMany("App\Models\Model\Kelas", "id_prodi", "id_prodi");
+    	return $this->hasOne("App\Models\Model\Kelas", "id_prodi", "id_prodi");
     }
 }

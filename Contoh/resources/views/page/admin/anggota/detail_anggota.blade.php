@@ -30,7 +30,11 @@
             <div class="card card-primary card-outline">
                 <div class="card-body box-profile">
                     <div class="text-center">
+                        @if($detail_anggota->gambar == NULL)
+                        <img class="profile-user-img img-fluid img-circle" src="{{ url('/gambar/gambar_user.png ') }}" alt="User profile picture">
+                        @else
                         <img class="profile-user-img img-fluid img-circle" src="{{ url('/storage/'.$detail_anggota->gambar) }}" alt="User profile picture">
+                        @endif
                     </div>
                     <h3 class="profile-username text-center">
                         {{ $detail_anggota->nama }}

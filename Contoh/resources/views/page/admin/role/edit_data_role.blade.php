@@ -1,5 +1,7 @@
 @extends("page.layouts.template")
 
+@section("page_title", "Edit Data Role")
+
 @section("breadcrumb")
 
 <div class="container-fluid">
@@ -13,7 +15,7 @@
 					<a href="{{ url('/page/admin/dashboard') }}"> Dashboard </a>
 				</li>
 				<li class="breadcrumb-item">
-					<a href="{{ url('/page/admin/role/data_role') }}"> Data Role </a>
+					<a href="{{ url('/page/admin/role/') }}"> Data Role </a>
 				</li>
 				<li class="breadcrumb-item active"> Edit Data Role </li>
 			</ol>

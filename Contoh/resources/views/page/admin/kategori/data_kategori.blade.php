@@ -14,7 +14,7 @@
 				<li class="breadcrumb-item">
 					<a href="{{ url('/page/admin/dashboard') }}"> Dashboard </a>
 				</li>
-				<li class="breadcrumb-item active">Data Kategori</li>
+				<li class="breadcrumb-item active"> Data Kategori </li>
 			</ol>
 		</div>
 	</div>
@@ -77,13 +77,12 @@
 								<td class="text-center">{{ $kategori->nama_kategori }}</td>
 								<td>{{ $kategori->slug }}</td>
 								<td class="text-center">
-									<a href="" class="btn btn-warning btn-sm">
+									<a href="{{ url('/page/admin/kategori/edit') }}/{{ $kategori->id_kategori }}" class="btn btn-warning btn-sm">
 										<i class="fa fa-edit"></i> Edit
 									</a>
-									<form method="POST" action="{{ url('/page/admin/kategori/hapus') }}" class="d-inline">
+									<form onsubmit="return false" id="form" class="d-inline">
 										{{ csrf_field() }}
-										<input type="hidden" name="id_kategori" value="{{ $kategori->id_kategori }}">
-										<button type="submit" class="btn btn-danger btn-sm">
+										<button id="btn-hapus" class="btn btn-danger btn-sm" onclick="hapus({{$kategori->id_kategori}})">
 											<i class="fa fa-trash-o"></i> Hapus
 										</button>
 									</form>
@@ -110,13 +109,13 @@
 $(function () {
 	$('#quickForm').validate({
     	rules: {
-    		nama_role : {
+    		nama_kategori : {
         		required : true,
     		},
   		},
     	messages: {
-    		nama_role : {
-        		required: "Kolom tidak boleh kosong",
+    		nama_kategori : {
+        		required: "Kolom nama kategori tidak boleh kosong",
       		},
     	},
     	errorElement: 'span',
@@ -135,7 +134,7 @@ $(function () {
 </script>
 
 <script type="text/javascript">
-	function hapus(id_role)
+	function hapus(id_kategori)
 	{
 		swal({
 			title: "Yakin ? Ingin Menghapus Data Ini ?",
@@ -148,9 +147,9 @@ $(function () {
 		.then((willDelete) => {
 			if (willDelete) {
 				$.ajax({
-					url : "{{ url('/page/admin/role/hapus') }}/" + id_role,
+					url : "{{ url('/page/admin/kategori/hapus') }}/" + id_kategori,
 					type : "POST",
-					data : { _method : 'delete', _token : $('input[name="_token"]').val(), id_role : id_role },
+					data : { _method : 'delete', _token : $('input[name="_token"]').val(), id_kategori : id_kategori },
 					success : function (res) {
 						swal({
 							title: "Berhasil!",
@@ -181,6 +180,17 @@ $(function () {
 		button: "OK",
 	});
 
+</script>
+
+@elseif(session("double"))
+
+<script type="text/javascript">
+	swal({
+		title: "Gagal!",
+		text: "{{ session('double') }}",
+		icon: "error",
+		button: "OK",
+	});
 </script>
 
 @endif

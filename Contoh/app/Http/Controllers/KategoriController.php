@@ -19,11 +19,51 @@ class KategoriController extends Controller
 
 	public function tambah(Request $request)
 	{
+		$nama_kategori = $request->nama_kategori;
+
+		$cek = Kategori::where("nama_kategori", $nama_kategori)->get();
+
+		if ($cek != "") 
+		{
+			return redirect()->back()->with("double", "Tidak Boleh Duplikasi Data");
+		}
+
 		Kategori::create([
 			"nama_kategori" => $request->nama_kategori,
 			"slug" => Str::slug($request->nama_kategori)
 		]);
 
-		return redirect()->back();
+		return redirect()->back()->with("sukses", "Data Berhasil di Tambahkan");
+	}
+
+	public function edit($id_kategori)
+	{
+		$data = [
+			"edit" => Kategori::where("id_kategori", $id_kategori)->first(),
+			"data_kategori" => Kategori::where("id_kategori", "!=", $id_kategori)->get()
+		];
+
+		return view("/page/admin/kategori/edit_data_kategori", $data);
+	}
+
+	public function simpan(Request $request)
+	{
+		$nama_kategori = $request->nama_kategori;
+
+		$cek = Kategori::where("nama_kategori", $nama_kategori)->get();
+
+		if ($cek != "")
+		{
+			return redirect()->back()->with("double", "Tidak Boleh Duplikasi Data");
+		}
+
+		return redirect()->back()->with("sukses", "Data Berhasil di Simpan");
+	}
+
+	public function hapus($id_kategori)
+	{
+		Kategori::where("id_kategori", $id_kategori)->delete();
+
+		return redirect()->back()->with("sukses", "Data Berhasil di Hapus");
 	}
 }

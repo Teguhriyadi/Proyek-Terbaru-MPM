@@ -46,9 +46,9 @@
 						</div>
 						<div class="form-group">
 							<label for="nama_jurusan"> Jurusan </label>
-							<select class="form-control" id="id_jurusan" name="id_jurusan">
+							<select class="form-control select2bs4" id="id_jurusan" name="id_jurusan" style="width: 100%;">
 								<option value="">- Pilih -</option>
-								@foreach($data_jurusan as $jurusan)
+								@foreach($data_jurusan as $jurusan)		
 									@if($edit->id_jurusan == $jurusan->id_jurusan)
 									<option value="{{ $jurusan->id_jurusan }}" selected>
 										{{ $jurusan->nama_jurusan }}
@@ -96,7 +96,13 @@
 							<tr>
 								<td class="text-center">{{ ++$no }}.</td>
 								<td class="text-center">{{ $prodi->nama_prodi }}</td>
-								<td class="text-center">{{ $prodi->getJurusan->nama_jurusan }}</td>
+								<td class="text-center">
+									@if(empty($prodi->getJurusan->nama_jurusan))
+										<i><b>NULL</b></i>
+									@else
+										{{ $prodi->getJurusan->nama_jurusan }}
+									@endif
+								</td>
 								<td class="text-center">
 									<a href="{{ url('/page/admin/prodi/edit') }}/{{ $prodi->id_prodi }}" class="btn btn-warning btn-sm">
 										<i class="fa fa-edit"></i> Edit

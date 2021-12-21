@@ -86,7 +86,14 @@
 							<tr>
 								<td class="text-center">{{ ++$no }}.</td>
 								<td class="text-center">{{ $prodi->nama_prodi }}</td>
-								<td class="text-center">{{ $prodi->getJurusan->nama_jurusan }}</td>
+								<td class="text-center">
+									@if(empty($prodi->getJurusan->nama_jurusan))
+										<i><b>Null</b></i>
+									@else
+										{{ $prodi->getJurusan->nama_jurusan }}
+									@endif
+									
+								</td>
 								<td class="text-center">
 									<a href="{{ url('/page/admin/prodi/edit') }}/{{ $prodi->id_prodi }}" class="btn btn-warning btn-sm">
 										<i class="fa fa-edit"></i> Edit

@@ -63,8 +63,8 @@
 						</div>
 					</div>
 					<div class="card-footer">
-						<button type="submit" class="btn btn-success btn-sm">
-							<i class="fa fa-edit"></i> Simpan
+						<button type="submit" class="btn btn-primary btn-sm">
+							<i class="fa fa-save"></i> Simpan
 						</button>
 						<button type="reset" class="btn btn-danger btn-sm">
 							<i class="fa fa-refresh"></i> Batal
@@ -96,7 +96,13 @@
 							<tr>
 								<td class="text-center">{{ ++$no }}.</td>
 								<td class="text-center">{{ $kelas->nama_kelas }}</td>
-								<td class="text-center">{{ $kelas->getProdi->nama_prodi }}</td>
+								<td class="text-center">
+									@if(empty($kelas->getProdi->nama_prodi))
+										<i><b>NULL</b></i>
+									@else
+									{{ $kelas->getProdi->nama_prodi }}
+									@endif
+								</td>
 								<td class="text-center">
 									<a href="{{ url('/page/admin/kelas/edit') }}/{{ $kelas->id_kelas }}" class="btn btn-warning btn-sm">
 										<i class="fa fa-edit"></i> Edit

@@ -36,7 +36,7 @@
 				<div class="card">
 					<div class="card-header">
 						<h3 class="card-title">
-							<i class="fa fa-pencil"></i> Edit Data Jurusan
+							<i class="fa fa-edit"></i> Edit Data Jurusan
 						</h3>
 					</div>
 					<div class="card-body">
