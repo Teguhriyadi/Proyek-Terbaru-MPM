@@ -204,15 +204,11 @@
 			}
 		},
 		<?php
-		$hadir = DB::table("tb_absensi")->where("status_absen", 1)->where("nim_anggota", $detail->getAnggota->nim)->count();
-		$sakit = DB::table("tb_absensi")->where("status_absen", 2)->where("nim_anggota", $detail->getAnggota->nim)->count();
-		$izin = DB::table("tb_absensi")->where("status_absen", 3)->where("nim_anggota", $detail->getAnggota->nim)->count();
-		$alfa = DB::table("tb_absensi")->where("status_absen", 4)->where("nim_anggota", $detail->getAnggota->nim)->count();
-		$terlambat = DB::table("tb_absensi")->where("status_absen", 5)->where("nim_anggota", $detail->getAnggota->nim)->count();
+		$total = DB::table("tb_kas")->where("nim_anggota", $detail->getAnggota->nim)->sum("bayar", 1);
 		?>
 		series: [{
-			name: 'Absen',
-			data: [{{$hadir}}, {{$sakit}}, {{$izin}}, {{$alfa}}, {{$terlambat}}]
+			name: 'Uang KAS',
+			data: [ {{ $total }} ]
 
 		}]
 	});

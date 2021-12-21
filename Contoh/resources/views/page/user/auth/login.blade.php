@@ -20,7 +20,13 @@
 			<div class="row">
 
 				<center>
+					
 					<div class="col-md-6 mt-5 mt-lg-0">
+						@if(session("belum_ada_akses"))
+						<div class="alert alert-danger">
+							{{ session("belum_ada_akses") }}
+						</div>
+						@endif
 						<div class="card">
 							<div class="card-body">
 								<form action="{{ url('/post_login') }}" method="post">

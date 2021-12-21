@@ -66,7 +66,7 @@ class AppLandingController extends Controller
 
         } else {
 
-            return redirect("/");
+            return redirect("/login")->with("belum_ada_akses", "Data Anda Belum Diaktifkan");
         }
     }
 

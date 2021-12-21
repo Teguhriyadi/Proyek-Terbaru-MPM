@@ -55,8 +55,8 @@
 								<td class="text-center">{{ ++$no }}.</td>
 								<td class="text-center">{{ $proker->nama_proker }}</td>
 								<td class="text-center">{{ $proker->waktu }}</td>
-								<td class="text-center"></td>
-								<td class="text-center"></td>
+								<td class="text-center">{{ $proker->target }}</td>
+								<td class="text-center">{{ $proker->sasaran }}</td>
 								<td class="text-center">
 									<a href="{{ url('/page/admin/proker/edit') }}/{{ $proker->id_proker }}" class="btn btn-warning btn-sm">
 										<i class="fa fa-edit"></i>
